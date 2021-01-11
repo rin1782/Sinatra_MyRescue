@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210111031743) do
+ActiveRecord::Schema.define(version: 20210111160802) do
 
   create_table "adoptables", force: :cascade do |t|
     t.string  "pet_name"
@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20210111031743) do
     t.integer "rescue_id"
   end
 
-  create_table "owner", force: :cascade do |t|
+  create_table "owners", force: :cascade do |t|
     t.string "username"
     t.string "password"
   end

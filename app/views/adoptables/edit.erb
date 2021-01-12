@@ -1,0 +1,15 @@
+<h1>Edit <%= @puppy.pet_name%> info</h1>
+<p><%= @error %></p>
+<form action="/adoptables/<%=@puppy.id" method="post">
+    <input id="hidden" type="hidden" name="_method" value="PATCH">
+    <label>Name</label>
+    <input type="text" name="pet_name" value="<%=@puppy.pet_name%>">
+    <label>Description</label>
+    <textarea name="pet_desc" value="<%=@puppy.pet_desc%>"></textarea>
+    <label>Availibility</label>
+    <input type="checkbox" checked>
+    <label>Image URL</label>
+    <input type="text" name="pet_pic" value="<%=@puppy.pet_pic%>">
+    <input type="submit">Add New Pup</input>
+
+</form>

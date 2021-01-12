@@ -1,9 +1,15 @@
 <h1> Adoptable Pups </h1> 
-
+<a href="/adoptables/new">Add a new pup to the fam!</a>
 <% @adoptables.each do |pet| %>
-    <h2><a href="/adoptables/<%= pet.pet_name %>"><%= pet.pet_name %></a> </h2>
+    <h2><a href="/adoptables/<%= pet.id %>"><%= pet.pet_name %></a> </h2>
     <img src="<%= pet.pet_pic %>" alt="puppy">
     <% end %>
+
+<form action="/adoptables/<%= @puppy.id %>" method="post">
+    <input type="hidden" name="_method" value="delete">
+</form>
+
+
 
 
 

@@ -1,50 +1,47 @@
 class AdoptablesController < ApplicationController
 
-    #CREATE
-        #NEW 
-        #make a GET request to '/adoptables/new'
         get '/adoptables/new' do
             erb :'/adoptables/new'
         end
 
-        #CREATE
-        #make a POST request to '/adoptables'
         post '/adoptables' do
            pet = Adoptable.new(params)
-           if pet.save
-            #take owner to adoptables index
+           if !pet.pet_name.empty? && !pet.pet_desc.empty?
+            pet.save
             redirect '/adoptables'
            else
+            @error = "Data Invalid: Please enter at least a new dog's name AND description."
             erb :'adoptables/new'
            end
         end
-
-    #READ
-        #index
-        #make a GET request to '/adoptables'
 
         get '/adoptables' do
             @adoptables = Adoptable.all
             erb :'adoptables/index'
         end
 
-        #show
-        #make a GET request to '/adoptables/:id'
-
         get '/adoptables/:id' do
-            @singlepup = Adoptable.all
-            @puppy = Adoptable.find{|pet| pet.pet_name}
+            @puppy = Adoptable.find(params[:id])
             erb :'adoptables/show'
         end
 
+        get '/adoptables/:id/edit' do
+            @puppy = Adoptable.find(params[:id])
+            erb :'/adoptables/edit'
+        end
 
-    #UPDATE
-        #edit
-        #make a GET request to '/adoptables/:id/edit'
+        patch '/adoptables/:id' do
+           
+        end
 
-        #update
-        #make a PATCH(changing one thing vs PUT changes more) request to '/adoptables/:id'
+        delete '/adoptables/:id' do
+            pet = Adoptable.find(params[:id])
+            pet.destroy 
+            redirect '/adoptables'
+        end
 
+        
+        
     #DESTROY
         #make a DELETE request to '/adoptables/:id'
 

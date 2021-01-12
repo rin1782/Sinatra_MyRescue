@@ -1,0 +1,11 @@
+<% @singlepup.each do |pet| %>
+<h1><%= pet.pet_name %></h1>
+<p><%= pet.pet_desc %></p>
+<h3><% if pet.pet_avail == true %>
+    <%= "I'm still available!!" %>
+    <% else %>
+    <%= "I'm off to my furever home, but please check out my friends!!" %></h3>
+    <% end %>
+    <% end %>
+
+

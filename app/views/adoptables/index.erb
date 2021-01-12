@@ -1,8 +1,16 @@
-<h1> Adoptable Pets </h1> 
+<h1> Adoptable Pups </h1> 
 
 <% @adoptables.each do |pet| %>
-<h2><%= pet.pet_name %> </h2>
-<h3><%= pet.pet_avail %></h3>
-<p><%= pet.pet_desc %></p>
-<img src="<%= pet.pet_pic %>" alt="puppy"
-<% end %>
+    <h2><a href="/adoptables/<%= pet.pet_name %>"><%= pet.pet_name %></a> </h2>
+    <img src="<%= pet.pet_pic %>" alt="puppy">
+    <% end %>
+
+
+
+
+
+
+
+
+
+

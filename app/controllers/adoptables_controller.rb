@@ -40,9 +40,4 @@ class AdoptablesController < ApplicationController
             redirect '/adoptables'
         end
 
-        
-        
-    #DESTROY
-        #make a DELETE request to '/adoptables/:id'
-
 end

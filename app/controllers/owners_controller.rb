@@ -6,16 +6,12 @@ class OwnersController < ApplicationController
     
     post '/signup' do
         user = Owner.new(params)
-            if user.username.empty? || user.password.empty?
-                @error = "Username and/or password must contain characters."
-                erb :'owners/login'
-            elsif Owner.find_by(username: user.username)
-                @error = "Username Already Exists."
-                erb :'owners/signup'
+            if user.save
+                session[:user_id] = owner.id
+                redirect '/adoptables'
             else
-                user.save
-                session[:user_id] = user.id
-                redirect '/'
+                @error = "Invalid info for login"
+                erb :'/owners/signup'
             end
     end
 end

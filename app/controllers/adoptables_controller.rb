@@ -1,17 +1,16 @@
 class AdoptablesController < ApplicationController
 
+        before do
+            require_login
+        end
+
         get '/adoptables/new' do
-            if logged_in?
-                erb :'/adoptables/new'
-            else
-                redirect '/login'
-            end
+            erb :'/adoptables/new'
         end
 
         post '/adoptables' do
            pet = current_user.adoptables.build(params)
-           if !pet.pet_name.empty? && !pet.pet_desc.empty?
-            pet.save
+           if pet.save
             redirect '/adoptables'
            else
             @error = "Data Invalid: Please enter at least a new dog's name AND description."
@@ -20,34 +19,22 @@ class AdoptablesController < ApplicationController
         end
 
         get '/adoptables' do
-            if logged_in?
-                @adoptables = Adoptable.all
-                erb :'adoptables/index'
-            else
-                redirect '/login'
-            end
+            @adoptables = Adoptable.all
+            erb :'adoptables/index'
         end
 
         get '/adoptables/:id' do
-            if logged_in?
                 @puppy = Adoptable.find_by(id: params[:id])
                 if @puppy
                 erb :'adoptables/show'
                 else
                     redirect '/adoptables'
                 end
-            else
-                redirect '/login'
             end
-        end
 
         get '/adoptables/:id/edit' do
-            if logged_in?
                 @puppy = Adoptable.find(params[:id])
                 erb :'/adoptables/edit'
-            else
-                redirect '/login'
-            end
         end
 
         patch '/adoptables/:id' do

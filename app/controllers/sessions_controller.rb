@@ -8,12 +8,15 @@ class SessionsController < ApplicationController
         if params["username"].empty? || params["password"].empty?
             @error = "Username and/or password must contain characters."
             erb :'owners/login'
-        elsif user = Owner.find_by(username: params["username"], password: params["password"])
+        else
+            user = Owner.find_by(username: params["username"])
+                if user && user.authenticate(params["password"])
                 session[:user_id] = user.id
                 redirect '/adoptables'
         else
                 @error = "Account not found"
                 erb :'owners/login'
+            end 
         end
     end
 

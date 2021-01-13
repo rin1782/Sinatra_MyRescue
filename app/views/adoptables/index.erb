@@ -3,9 +3,8 @@
 <% @adoptables.each do |pet| %>
     <h2><a href="/adoptables/<%= pet.id %>"><%= pet.pet_name %></a> </h2>
     <img src="<%= pet.pet_pic %>" alt="puppy">
-    <% if @puppy.owner == current_user %>
-        <a href="/adoptables/<%= pet.id %>"/edit">Pupdate</a>
     <% end %>
+
 
 
 

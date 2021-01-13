@@ -6,6 +6,7 @@ end
 
 use Rack::MethodOverride
 use SessionsController
-use OwnersController
 use AdoptablesController
+# use SessionsController
+use OwnersController
 run ApplicationController

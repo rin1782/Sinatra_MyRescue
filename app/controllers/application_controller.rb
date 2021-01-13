@@ -4,21 +4,21 @@ class ApplicationController < Sinatra::Base
 
   configure do
     enable :sessions
-    set :sessions_secret, "active"
+    set :session_secret, "whatever"
     set :public_folder, 'public'
     set :views, 'app/views'
-  end
+ end
 
   get "/" do
     erb :welcome
   end
 
-  def current_user
-    Owner.find_by(id: session[:user_id])
-  end
-
   def logged_in?
     !!current_user
+  end
+
+  def current_user
+    @current_user ||= Owner.find_by(id: session[:user_id]) if session[:user_id]
   end
 
   def require_login

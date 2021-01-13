@@ -38,3 +38,5 @@
 #make an if statement after every get to make sure theyre logged in
 
   <div><a href="/adoptables/<%= @puppy.id %>/edit">Pupdate</a></div>
+
+ 

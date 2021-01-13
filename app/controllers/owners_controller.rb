@@ -3,6 +3,7 @@ class OwnersController < ApplicationController
         erb :'/owners/signup'
     end
 
+    
     post '/signup' do
         user = Owner.new(params)
             if user.username.empty? || user.password.empty?

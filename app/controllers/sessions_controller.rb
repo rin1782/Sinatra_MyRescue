@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
         elsif user = Owner.find_by(username: params["username"], password: params["password"])
                 session[:user_id] = user.id
                 redirect '/adoptables'
-            else
+        else
                 @error = "Account not found"
                 erb :'owners/login'
         end

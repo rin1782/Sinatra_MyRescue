@@ -1,6 +1,8 @@
 <h1>Edit <%= @puppy.pet_name%> info</h1>
-<p><%= @error %></p>
-<form action="/adoptables/<%=@puppy.id" method="post">
+<p><% if @error == true%>
+        <%= @error %>
+        <% end %> </p>
+<form action="/adoptables/<%=@puppy.id %>" method="post">
     <input id="hidden" type="hidden" name="_method" value="PATCH">
     <label>Name</label>
     <input type="text" name="pet_name" value="<%=@puppy.pet_name%>">

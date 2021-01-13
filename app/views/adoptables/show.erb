@@ -8,5 +8,11 @@
     <%= "I'm off to my furever home, but please check out my friends!!" %></h3>
     <% end %>
 
+<form action="/adoptables/<%= @puppy.id %>" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <% if @puppy.user && @puppy.user.id == current_user.id %>
+    <button type="submit">Delete Pup</button>
+    <% end %>
+</form>
 
 

@@ -27,10 +27,14 @@
 *create a user login/password page
 *build forms
 *build navigation
+*add user authentication
+*add user authorization
+*don't want a user who's not logged in to see certain data
 
         
-<form action="/adoptables/<%= @puppy.id %>" method="post">
-    <input type="hidden" name="_method" value="delete">
-    <button type="submit">Delete Pup</button>
-</form>
 
+
+
+#make an if statement after every get to make sure theyre logged in
+
+  <div><a href="/adoptables/<%= @puppy.id %>/edit">Pupdate</a></div>

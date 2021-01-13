@@ -1,11 +1,15 @@
 class AdoptablesController < ApplicationController
 
         get '/adoptables/new' do
-            erb :'/adoptables/new'
+            if logged_in?
+                erb :'/adoptables/new'
+            else
+                redirect '/login'
+            end
         end
 
         post '/adoptables' do
-           pet = Adoptable.new(params)
+           pet = current_user.adoptables.build(params)
            if !pet.pet_name.empty? && !pet.pet_desc.empty?
             pet.save
             redirect '/adoptables'
@@ -16,25 +20,44 @@ class AdoptablesController < ApplicationController
         end
 
         get '/adoptables' do
-            @adoptables = Adoptable.all
-            erb :'adoptables/index'
+            if logged_in?
+                @adoptables = Adoptable.all
+                erb :'adoptables/index'
+            else
+                redirect '/login'
+            end
         end
 
         get '/adoptables/:id' do
-            @puppy = Adoptable.find(params[:id])
-            erb :'adoptables/show'
+            if logged_in?
+                @puppy = Adoptable.find_by(id: params[:id])
+                if @puppy
+                erb :'adoptables/show'
+                else
+                    redirect '/adoptables'
+                end
+            else
+                redirect '/login'
+            end
         end
 
         get '/adoptables/:id/edit' do
-            @puppy = Adoptable.find(params[:id])
-            erb :'/adoptables/edit'
+            if logged_in?
+                @puppy = Adoptable.find(params[:id])
+                erb :'/adoptables/edit'
+            else
+                redirect '/login'
+            end
         end
 
         patch '/adoptables/:id' do
-           
+            @puppy = Adoptable.find(params[:id])
+            @puppy.update(pet_name: params["pet_name"], pet_desc: params["pet_desc"], pet_avail: params["pet_avail"], pet_pic: params["pet_pic"])
+            erb :'/adoptables/show'
         end
 
         delete '/adoptables/:id' do
+            @puppy = Adoptable.all
             pet = Adoptable.find(params[:id])
             pet.destroy 
             redirect '/adoptables'

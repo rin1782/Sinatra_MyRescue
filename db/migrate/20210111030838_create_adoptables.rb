@@ -5,7 +5,7 @@ class CreateAdoptables < ActiveRecord::Migration
       t.boolean :pet_avail
       t.text :pet_desc
       t.string :pet_pic
-      t.integer :rescue_id
+      t.integer :owner_id
      end
   end
 end

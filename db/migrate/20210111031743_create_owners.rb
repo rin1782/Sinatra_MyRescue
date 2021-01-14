@@ -1,8 +1,8 @@
-class CreateRescueOwner < ActiveRecord::Migration
+class CreateOwners < ActiveRecord::Migration
   def change
     create_table :owners do |t|
       t.string :username
-      t.string :password
+      t.string :password_digest
     end
   end
 end

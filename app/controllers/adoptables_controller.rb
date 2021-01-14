@@ -9,6 +9,7 @@ class AdoptablesController < ApplicationController
 
         post '/adoptables' do
            pet = Adoptable.new(params)
+           pet.owner_id = session[:user_id]
            if pet.save
             redirect '/adoptables'
            else
@@ -27,6 +28,7 @@ class AdoptablesController < ApplicationController
         get '/adoptables/:id' do
                 if logged_in?
                 @puppy = Adoptable.find_by(id: params[:id])
+                @user = current_user
                 if @puppy
                 erb :'adoptables/show'
                 else
@@ -38,6 +40,8 @@ class AdoptablesController < ApplicationController
         get '/adoptables/:id/edit' do
             if logged_in?
                 @puppy = Adoptable.find(params[:id])
+               
+                @user = current_user
                 erb :'/adoptables/edit'
             end
         end

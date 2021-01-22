@@ -14,13 +14,17 @@
     <link rel="stylesheet" href="/stylesheets/main.css" />
   </head>
   <body>
+
+    <%if logged_in?%>
     <div>
       <div><a href="/">Home</a></div>
-      <div><a href="/login">Login</a></div>
       <div><a href="/logout">LogOut</a></div>
-      <div><a href="/signup">SignUp</a></div>
       <div><a href="/adoptables">Adoptables</a></div>
     </div>
+    <% else %>
+      <div><a href="/signup">SignUp</a></div>
+      <div><a href="/login">Login</a></div>
+    <% end %>
     
     <div class="wrapper">
 

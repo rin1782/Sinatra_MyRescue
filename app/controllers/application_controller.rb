@@ -12,9 +12,9 @@ class ApplicationController < Sinatra::Base
   get "/" do
     erb :welcome
   end
-  
-  
 
+  
+  
   def logged_in?
     !!current_user
   end
@@ -28,6 +28,6 @@ class ApplicationController < Sinatra::Base
       redirect '/login'
     end
   end
-
-
 end
+
+
